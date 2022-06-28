@@ -1,24 +1,24 @@
 #include "QuickLib.h"
 
 namespace QuickLib {
-	namespace encrypt {
 
-		static inline bool is_base64(unsigned char c) {
+	namespace encrypt {
+		bool Base::is_base64(unsigned char c) {
 			return (isalnum(c) || (c == '+') || (c == '/'));
 		}
 
-		std::string base64_encode(const std::string str, int len = -1) {
+		std::string Base::base64_encode(const std::string str, int len) {
 			if (len <= -1) {
 				len = str.length();
 			}
 			unsigned char const* ucptr = reinterpret_cast<unsigned char const*>(str.c_str());
 			if (ucptr != nullptr) {
-				return QuickLib::encrypt::base64_encode(ucptr, len);
+				return this->base64_encode(ucptr, len);
 			}
 			return std::string();
 		}
 
-		std::string base64_encode(unsigned char const* bytes_to_encode, unsigned int in_len) {
+		std::string Base::base64_encode(unsigned char const* bytes_to_encode, unsigned int in_len) {
 			std::string base64_chars =
 				"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 				"abcdefghijklmnopqrstuvwxyz"
@@ -66,14 +66,7 @@ namespace QuickLib {
 
 		}
 
-		std::string base64_decode(unsigned char * str , int len) {
-			if (len != 0 && strnlen_s(str) != 0) {
-				return QuickLib::encrypt::base64_decode(std::string(str));
-			}
-			return "";
-		}
-
-		std::string base64_decode(std::string const& encoded_string) {
+		std::string Base::base64_decode(std::string const& encoded_string) {
 			std::string base64_chars =
 				"ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 				"abcdefghijklmnopqrstuvwxyz"
@@ -86,7 +79,7 @@ namespace QuickLib {
 			unsigned char char_array_4[4], char_array_3[3];
 			std::string ret;
 
-			while (in_len-- && (encoded_string[in_] != '=') && is_base64(encoded_string[in_])) {
+			while (in_len-- && (encoded_string[in_] != '=') && this->is_base64(encoded_string[in_])) {
 				char_array_4[i++] = encoded_string[in_]; in_++;
 				if (i == 4) {
 					for (i = 0; i < 4; i++)
@@ -118,17 +111,40 @@ namespace QuickLib {
 
 			return ret;
 		}
+
+		std::string Base::base64_decode(unsigned char * str, int len) {
+			if (len != 0) {
+				return this->base64_decode(std::string(reinterpret_cast<char *>(str)));
+			}
+
+			return "";
+		}
 	}
 
+
 	namespace debug {
-		void log(...) {
-			printf(...);
+		void log(const char * str , ...) {
+			va_list args;
+			va_start(args, str);
+			log(str, args);
+			va_end(args);
 		}
 
-		void printif(bool var, ...) {
+		void log(const char * str, va_list args)
+		{
+			char szBuff[4096];
+			memset(szBuff, 0, sizeof(szBuff));
+			vsprintf(szBuff, str, args);
+		}
+
+		void printif(bool var,const char * str, ...) { 
 			if (var) {
-				printf(...);
+				va_list args;
+				va_start(args, str);
+				log(str,args);
+				va_end(args);
 			}
 		}
 	}
+
 }

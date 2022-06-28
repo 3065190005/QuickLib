@@ -4,18 +4,31 @@
 
 namespace QuickLib{
 	namespace encrypt{
-		std::string base64_encode(unsigned char const* cstr, unsigned int len);
-		std::string base64_encode(std::string str,int len = -1);
 
-		std::string base64_decode(unsigned char * str, int len);
-		std::string base64_decode(std::string const& s);
-	}
+		class Base {
+
+		private:
+			bool is_base64(unsigned char c);
+
+		public:
+			std::string base64_encode(unsigned char const* cstr, unsigned int len);
+			std::string base64_encode(std::string str, int len = -1);
+
+			std::string base64_decode(unsigned char * str, int len);
+			std::string base64_decode(std::string const& s);
+
+			Base() {};
+			~Base() {};
+		};
+	};
 
 	namespace debug {
-		void log(...);
-		void printif(bool var, ...);
-	}
-}
+		void log(const char * str ,...);
+		void printif(bool var, const char *str , ...);
+
+		void log(const char * str, va_list args);
+	};
+};
 
 namespace QuiL = QuickLib;
 namespace Qencrypt = QuickLib::encrypt;

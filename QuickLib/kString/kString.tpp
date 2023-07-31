@@ -3,7 +3,7 @@
 
 template<typename T>
 std::vector<typename std::enable_if<std::is_integral<T>::value || std::is_floating_point<T>::value, T>::type>
-	Cervice::Obj::String::stringSplit(std::string str, char calm)
+	QuickLib::Obj::String::stringSplit(std::string str, char calm)
 {
 	using retType = typename std::enable_if<std::is_integral<T>::value || std::is_floating_point<T>::value, T>::type;
 	std::string path;
@@ -21,7 +21,7 @@ std::vector<typename std::enable_if<std::is_integral<T>::value || std::is_floati
 }
 
 template<typename T>
-std::vector<T> Cervice::Obj::String::stringSplit(std::string str, char calm, T(*func)(std::string))
+std::vector<T> QuickLib::Obj::String::stringSplit(std::string str, char calm, T(*func)(std::string))
 {
 	if (func == nullptr) {
 		throw("callback cant be nullptr");
@@ -42,7 +42,7 @@ std::vector<T> Cervice::Obj::String::stringSplit(std::string str, char calm, T(*
 
 template<typename T>
 std::vector<typename std::enable_if<std::is_integral<T>::value || std::is_floating_point<T>::value, T>::type> 
-Cervice::Obj::String::stringSplit(std::string str, std::string calm)
+QuickLib::Obj::String::stringSplit(std::string str, std::string calm)
 {
 	using retType = typename std::enable_if<std::is_integral<T>::value || std::is_floating_point<T>::value, T>::type;
 	std::string path;
@@ -64,7 +64,7 @@ Cervice::Obj::String::stringSplit(std::string str, std::string calm)
 
 
 template<typename T>
-std::vector<T> Cervice::Obj::String::stringSplit(std::string str, std::string calm, T(*func)(std::string))
+std::vector<T> QuickLib::Obj::String::stringSplit(std::string str, std::string calm, T(*func)(std::string))
 {
 	if (func == nullptr) {
 		throw("callback cant be nullptr");
@@ -89,7 +89,7 @@ std::vector<T> Cervice::Obj::String::stringSplit(std::string str, std::string ca
 
 template<typename T>
 typename std::enable_if<std::is_integral<T>::value || std::is_floating_point<T>::value, T>::type
-Cervice::Obj::String::stringTo(std::string str, bool* has) {
+QuickLib::Obj::String::stringTo(std::string str, bool* has) {
 	std::stringstream ss;
 	ss << str;
 
@@ -104,7 +104,7 @@ Cervice::Obj::String::stringTo(std::string str, bool* has) {
 }
 
 template<typename T>
-std::string Cervice::Obj::String::stringFrom(
+std::string QuickLib::Obj::String::stringFrom(
 	typename std::enable_if<std::is_integral<T>::value || std::is_floating_point<T>::value, T>::type num,
 	bool* has)
 {

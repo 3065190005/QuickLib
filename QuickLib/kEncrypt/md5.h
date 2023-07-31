@@ -1,10 +1,10 @@
 #pragma once
-#ifndef _CERVER_KENCRYPT_MD5__
-#define _CERVER_KENCRYPT_MD5__
+#ifndef _QUICKLIB_KENCRYPT_MD5__
+#define _QUICKLIB_KENCRYPT_MD5__
 
 #include <string>
 
-namespace Cervice {
+namespace QuickLib {
 	namespace Obj {
 		namespace Encrypt {
 			namespace md5 {

@@ -1,10 +1,10 @@
 #pragma once
-#ifndef _CERVER_KENCRYPT_BASE64__
-#define _CERVER_KENCRYPT_BASE64__
+#ifndef _QUICKLIB_KENCRYPT_BASE64__
+#define _QUICKLIB_KENCRYPT_BASE64__
 
 #include <string>
 
-namespace Cervice {
+namespace QuickLib {
 	namespace Obj {
 		namespace Encrypt {
 			namespace base64 {

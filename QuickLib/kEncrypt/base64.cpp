@@ -1,6 +1,6 @@
 #include "base64.h"
 
-namespace Cervice {
+namespace QuickLib {
 	namespace Obj {
 		namespace Encrypt {
 			namespace base64 {

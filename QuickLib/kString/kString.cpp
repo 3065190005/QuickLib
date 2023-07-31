@@ -2,7 +2,7 @@
 #include <algorithm> 
 
 std::vector<std::string>
-Cervice::Obj::String::stringSplit(std::string str, char calm) {
+QuickLib::Obj::String::stringSplit(std::string str, char calm) {
 	std::string path;
 	std::stringstream ss(str);
 
@@ -17,7 +17,7 @@ Cervice::Obj::String::stringSplit(std::string str, char calm) {
 }
 
 std::vector<std::string>
-Cervice::Obj::String::stringSplit(std::string str, std::string calm) {
+QuickLib::Obj::String::stringSplit(std::string str, std::string calm) {
 	std::string path;
 	std::vector<std::string> ret;
 
@@ -33,7 +33,7 @@ Cervice::Obj::String::stringSplit(std::string str, std::string calm) {
 }
 
 std::optional<std::pair<std::string, std::string>>
-	Cervice::Obj::String::cutString(std::string str, std::string calm)
+QuickLib::Obj::String::cutString(std::string str, std::string calm)
 {
 	std::pair<std::string, std::string> ret;
 
@@ -47,13 +47,13 @@ std::optional<std::pair<std::string, std::string>>
 	return std::nullopt;
 }
 
-std::string Cervice::Obj::String::StringToUpper(std::string str)
+std::string QuickLib::Obj::String::StringToUpper(std::string str)
 {
 	std::transform(str.begin(), str.end(),str.begin(), ::toupper);
 	return str;
 }
 
-std::string Cervice::Obj::String::StringToUpper(const char* cstr, size_t lens)
+std::string QuickLib::Obj::String::StringToUpper(const char* cstr, size_t lens)
 {
 	if (!(lens > 0)) {
 		return std::string();
@@ -64,13 +64,13 @@ std::string Cervice::Obj::String::StringToUpper(const char* cstr, size_t lens)
 	return StringToUpper(ret);
 }
 
-std::string Cervice::Obj::String::StringToLower(std::string str)
+std::string QuickLib::Obj::String::StringToLower(std::string str)
 {
 	std::transform(str.begin(), str.end(), str.begin(), ::tolower);
 	return str;
 }
 
-std::string Cervice::Obj::String::StringToLower(const char* cstr, size_t lens)
+std::string QuickLib::Obj::String::StringToLower(const char* cstr, size_t lens)
 {
 	if (!(lens > 0)) {
 		return std::string();
@@ -81,7 +81,7 @@ std::string Cervice::Obj::String::StringToLower(const char* cstr, size_t lens)
 	return StringToLower(ret);
 }
 
-std::string Cervice::Obj::String::StringTirm(std::string str)
+std::string QuickLib::Obj::String::StringTirm(std::string str)
 {
 	auto beg = str.find_first_not_of(' ');
 	auto end = str.find_last_not_of(' ');
@@ -94,7 +94,7 @@ std::string Cervice::Obj::String::StringTirm(std::string str)
 	return str;
 }
 
-size_t Cervice::Obj::String::StringCount(std::string str, std::string fin)
+size_t QuickLib::Obj::String::StringCount(std::string str, std::string fin)
 {
 	size_t ret = 0;
 	while (str.rfind(fin) != str.npos)
@@ -106,7 +106,7 @@ size_t Cervice::Obj::String::StringCount(std::string str, std::string fin)
 	return ret;
 }
 
-std::string Cervice::Obj::String::StringReplace(std::string txt, std::string sub, std::string ne, int count)
+std::string QuickLib::Obj::String::StringReplace(std::string txt, std::string sub, std::string ne, int count)
 {
 	size_t sublens = sub.length();
 	int ncount = 0;
@@ -125,7 +125,7 @@ std::string Cervice::Obj::String::StringReplace(std::string txt, std::string sub
 	return txt;
 }
 
-std::vector<size_t> Cervice::Obj::String::StringFindIndex(std::string str, std::string tar, long cnt)
+std::vector<size_t> QuickLib::Obj::String::StringFindIndex(std::string str, std::string tar, long cnt)
 {
 	std::vector<size_t> retV;
 	size_t pos = str.find(tar);
@@ -143,7 +143,7 @@ std::vector<size_t> Cervice::Obj::String::StringFindIndex(std::string str, std::
 }
 
 std::vector<std::pair<std::size_t, std::string>>
-	Cervice::Obj::String::StringNotFindIndex(std::string str, std::string tar, long cnt)
+QuickLib::Obj::String::StringNotFindIndex(std::string str, std::string tar, long cnt)
 {
 	std::vector<std::pair<std::size_t, std::string>> retV;
 	size_t base = 0;
@@ -167,7 +167,7 @@ std::vector<std::pair<std::size_t, std::string>>
 	return retV;
 }
 
-std::vector<size_t> Cervice::Obj::String::StringrFindIndex(std::string str, std::string tar, long cnt)
+std::vector<size_t> QuickLib::Obj::String::StringrFindIndex(std::string str, std::string tar, long cnt)
 {
 	std::vector<size_t> retV;
 	size_t pos = str.rfind(tar);
@@ -183,7 +183,7 @@ std::vector<size_t> Cervice::Obj::String::StringrFindIndex(std::string str, std:
 }
 
 std::vector<std::pair<std::size_t, std::string>> 
-	Cervice::Obj::String::StringNotrFindIndex(std::string str, std::string tar, long cnt)
+	QuickLib::Obj::String::StringNotrFindIndex(std::string str, std::string tar, long cnt)
 {
 	std::vector<std::pair<std::size_t, std::string>> retV;
 	size_t pos = str.rfind(tar);

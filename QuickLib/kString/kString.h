@@ -1,13 +1,13 @@
 ﻿#pragma once
-#ifndef _CERVER_KSTRING_KSTRING__
-#define _CERVER_KSTRING_KSTRING__
+#ifndef _QUICKLIB_KSTRING_KSTRING__
+#define _QUICKLIB_KSTRING_KSTRING__
 
 #include <vector>
 #include <string>
 #include <functional>
 #include <optional>
 
-namespace Cervice {
+namespace QuickLib {
 	namespace Obj{
 		namespace String {
 

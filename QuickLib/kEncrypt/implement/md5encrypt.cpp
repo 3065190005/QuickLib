@@ -1,7 +1,7 @@
 #include "md5encrypt.h"
 
 
-namespace Cervice {
+namespace QuickLib {
 	namespace Obj {
 		namespace Encrypt {
 			namespace md5 {

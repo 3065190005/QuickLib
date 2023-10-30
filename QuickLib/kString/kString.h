@@ -83,6 +83,17 @@ namespace QuickLib {
 			std::vector<std::pair<std::size_t, std::string>>
 				StringNotrFindIndex(std::string, std::string, long);
 		}
+	
+		namespace Convert
+		{
+#ifdef _WIN32
+			std::wstring GbkToUtf8(std::string_view src_str);
+			std::string Utf8ToGbk(std::wstring_view src_str);
+#else
+			int GbkToUtf8(char* str_str, size_t src_len, char* dst_str, size_t dst_len);
+			int Utf8ToGbk(char* src_str, size_t src_len, char* dst_str, size_t dst_len);
+#endif
+		}
 	}
 }
 

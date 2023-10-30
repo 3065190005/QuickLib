@@ -204,3 +204,82 @@ std::vector<std::pair<std::size_t, std::string>>
 
 	return retV;
 }
+
+
+
+#ifdef _WIN32
+#include <Windows.h>
+namespace QuickLib::Obj::Convert
+{
+	std::wstring GbkToUtf8(std::string_view _src_str)
+	{
+		std::wstring result;
+		//获取缓冲区大小，并申请空间，缓冲区大小按字符计算  
+		int len = MultiByteToWideChar(CP_ACP, 0, _src_str.data(), _src_str.size(), NULL, 0);
+		TCHAR* buffer = new TCHAR[len + 1];
+		//多字节编码转换成宽字节编码  
+		MultiByteToWideChar(CP_ACP, 0, _src_str.data(), _src_str.size(), buffer, len);
+		buffer[len] = '\0';             //添加字符串结尾  
+		//删除缓冲区并返回值  
+		result.append(buffer);
+		delete[] buffer;
+		return result;
+	}
+
+	std::string Utf8ToGbk(std::wstring_view _src_str)
+	{
+		std::string result;
+		//获取缓冲区大小，并申请空间，缓冲区大小事按字节计算的  
+		int len = WideCharToMultiByte(CP_ACP, 0, _src_str.data(), _src_str.size(), NULL, 0, NULL, NULL);
+		char* buffer = new char[len + 1];
+		//宽字节编码转换成多字节编码  
+		WideCharToMultiByte(CP_ACP, 0, _src_str.data(), _src_str.size(), buffer, len, NULL, NULL);
+		buffer[len] = '\0';
+		//删除缓冲区并返回值  
+		result.append(buffer);
+		delete[] buffer;
+		return result;
+	}
+}
+#else
+#include <iconv.h>
+namespace Convert
+{
+	int GbkToUtf8(char* str_str, size_t src_len, char* dst_str, size_t dst_len)
+	{
+		iconv_t cd;
+		char** pin = &str_str;
+		char** pout = &dst_str;
+
+		cd = iconv_open("utf8", "gbk");
+		if (cd == 0)
+			return -1;
+		memset(dst_str, 0, dst_len);
+		if (iconv(cd, pin, &src_len, pout, &dst_len) == -1)
+			return -1;
+		iconv_close(cd);
+		*pout = '\0';
+
+		return 0;
+	}
+
+	int Utf8ToGbk(char* src_str, size_t src_len, char* dst_str, size_t dst_len)
+	{
+		iconv_t cd;
+		char** pin = &src_str;
+		char** pout = &dst_str;
+
+		cd = iconv_open("gbk", "utf8");
+		if (cd == 0)
+			return -1;
+		memset(dst_str, 0, dst_len);
+		if (iconv(cd, pin, &src_len, pout, &dst_len) == -1)
+			return -1;
+		iconv_close(cd);
+		*pout = '\0';
+
+		return 0;
+	}
+
+}
+#endif

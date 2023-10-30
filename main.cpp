@@ -13,5 +13,6 @@ using namespace kmd5;
 int main() {
 	bool has = true;
 	std::string abc = "123|111";
+	std::wstring wabc = kconvert::GbkToUtf8(abc);
 	kstring::StringReplace(abc, "|", ":");
 }
